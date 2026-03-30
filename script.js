@@ -1,13 +1,12 @@
 const API = "https://api.escuelajs.co/api/v1";
 const PLACEHOLDER = "https://placehold.co/200x200/eee/999?text=?";
 
-// ── Hardcoded category (CLOTHES ONLY) ─────────────────────────────
-const CLOTHES_CATEGORY_ID = 1; 
+// ── HARDLOCK CATEGORY ─────────────────────────────────────────────
+const ACTIVE_CATEGORY_NAME = "clothes";
 
 // ── State ─────────────────────────────────────────────────────────
 let all = [], filtered = [];
 let cart = JSON.parse(localStorage.getItem("cart") || "[]");
-let activeCat = CLOTHES_CATEGORY_ID;
 let minPrice = null, maxPrice = null;
 
 // ── Init ───────────────────────────────────────────────────────────
@@ -41,8 +40,8 @@ function applyFilters() {
   const q = document.getElementById("search").value.toLowerCase();
 
   filtered = all.filter(p =>
-    // CLOTHES ONLY LOCK
-    p.category?.id === activeCat &&
+    // ✅ CLOTHES ONLY FILTER (FIXED PROPERLY)
+    p.category?.name?.toLowerCase() === ACTIVE_CATEGORY_NAME &&
     (!q || p.title.toLowerCase().includes(q)) &&
     (minPrice == null || p.price >= minPrice) &&
     (maxPrice == null || p.price <= maxPrice)
@@ -54,7 +53,7 @@ function applyFilters() {
   renderGrid();
 }
 
-// ── Image helper ───────────────────────────────────────────────────
+// ── IMAGE HANDLER ─────────────────────────────────────────────────
 function getImg(p) {
   if (!p) return PLACEHOLDER;
 
@@ -85,7 +84,7 @@ function getImg(p) {
   return PLACEHOLDER;
 }
 
-// ── Grid rendering ─────────────────────────────────────────────────
+// ── GRID ───────────────────────────────────────────────────────────
 function renderGrid() {
   const grid = document.getElementById("grid");
 
@@ -117,16 +116,15 @@ function renderGrid() {
   }).join("");
 }
 
-// ── Cart logic ─────────────────────────────────────────────────────
+// ── CART ───────────────────────────────────────────────────────────
 function addToCart(id) {
   const p = all.find(x => x.id === id);
   if (!p) return;
 
   const existing = cart.find(c => c.id === id);
 
-  if (existing) {
-    existing.qty++;
-  } else {
+  if (existing) existing.qty++;
+  else {
     cart.push({
       id,
       name: p.title,
@@ -181,7 +179,7 @@ function updateCount() {
     cart.reduce((s, c) => s + c.qty, 0);
 }
 
-// ── Cart drawer ───────────────────────────────────────────────────
+// ── CART DRAWER ───────────────────────────────────────────────────
 function renderCart() {
   const el = document.getElementById("drawer-items");
 
@@ -228,7 +226,7 @@ function closeCart() {
   document.getElementById("drawer").classList.remove("open");
 }
 
-// ── Checkout ──────────────────────────────────────────────────────
+// ── CHECKOUT ───────────────────────────────────────────────────────
 function checkout() {
   if (!cart.length) return toast("Cart is empty");
 
@@ -258,7 +256,7 @@ function checkout() {
   }, 2000);
 }
 
-// ── Toast ──────────────────────────────────────────────────────────
+// ── TOAST ──────────────────────────────────────────────────────────
 let toastTimer;
 
 function toast(msg) {
@@ -273,5 +271,5 @@ function toast(msg) {
   }, 2000);
 }
 
-// ── Start ──────────────────────────────────────────────────────────
+// ── START ──────────────────────────────────────────────────────────
 init();
