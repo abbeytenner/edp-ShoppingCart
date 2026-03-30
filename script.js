@@ -2,7 +2,7 @@ const API = "https://api.escuelajs.co/api/v1";
 const PLACEHOLDER = "https://placehold.co/200x200/eee/999?text=?";
 
 // ── Hardcoded category (CLOTHES ONLY) ─────────────────────────────
-const CLOTHES_CATEGORY_ID = 1; // ⚠️ replace with actual "Clothes" ID if needed
+const CLOTHES_CATEGORY_ID = 1; 
 
 // ── State ─────────────────────────────────────────────────────────
 let all = [], filtered = [];
