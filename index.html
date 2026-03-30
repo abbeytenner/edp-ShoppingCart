@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SHOP</title>
-    <link rel="stylesheet" href="https://github.com/abbeytenner/edp-ShoppingCart/edit/main/style.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <header>
@@ -12,7 +12,6 @@
       <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRwrBCrbOa3a-rin3wXeth0d2ZFnhp-mz-MQ&s" alt="Logo" />
       <button id="cart-btn" onclick="openCart()">CART (<span id="cart-count">0</span>)</button>
     </header>
-
     <div class="layout">
       <aside>
         <p>Categories</p>
@@ -28,7 +27,6 @@
         <div class="grid" id="grid"><div class="status">Loading...</div></div>
       </main>
     </div>
-
     <div id="overlay" onclick="closeCart()"></div>
     <div id="drawer">
       <div class="drawer-head">
@@ -43,8 +41,7 @@
         <button id="checkout-btn" onclick="checkout()">CHECKOUT</button>
       </div>
     </div>
-
     <div id="toast"></div>
-    <script src="https://github.com/abbeytenner/edp-ShoppingCart/edit/main/script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
