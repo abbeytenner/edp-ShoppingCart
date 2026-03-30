@@ -6,41 +6,56 @@
     <title>SHOP</title>
     <link rel="stylesheet" href="style.css" />
   </head>
+
   <body>
     <header>
       <strong>DOODOOSHOP</strong>
-      <img class="logo" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRwrBCrbOa3a-rin3wXeth0d2ZFnhp-mz-MQ&s" alt="Logo" />
-      <button id="cart-btn" onclick="openCart()">CART (<span id="cart-count">0</span>)</button>
+
+      <img
+        class="logo"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRwrBCrbOa3a-rin3wXeth0d2ZFnhp-mz-MQ&s"
+        alt="Logo"
+      />
+
+      <button id="cart-btn" onclick="openCart()">
+        CART (<span id="cart-count">0</span>)
+      </button>
     </header>
-    <div class="layout">
-      <aside>
-        <p>Categories</p>
-        <div id="cat-list"></div>
-      </aside>
-      <main>
-        <div class="toolbar">
-          <input type="text"   id="search"    placeholder="Search..."   oninput="onSearch()" />
-          <input type="number" id="min-price" placeholder="Min price"   oninput="onPriceChange()" />
-          <input type="number" id="max-price" placeholder="Max price"   oninput="onPriceChange()" />
-          <span id="result-count"></span>
-        </div>
-        <div class="grid" id="grid"><div class="status">Loading...</div></div>
-      </main>
-    </div>
+
+    <!-- CENTERED MAIN AREA -->
+    <main class="centered">
+      <div class="toolbar">
+        <input type="text" id="search" placeholder="Search..." oninput="onSearch()" />
+        <input type="number" id="min-price" placeholder="Min price" oninput="onPriceChange()" />
+        <input type="number" id="max-price" placeholder="Max price" oninput="onPriceChange()" />
+        <span id="result-count"></span>
+      </div>
+
+      <div class="grid" id="grid">
+        <div class="status">Loading...</div>
+      </div>
+    </main>
+
+    <!-- CART OVERLAY -->
     <div id="overlay" onclick="closeCart()"></div>
+
     <div id="drawer">
       <div class="drawer-head">
         <strong>CART</strong>
         <button id="close-btn" onclick="closeCart()">CLOSE</button>
       </div>
+
       <div class="drawer-items" id="drawer-items"></div>
+
       <div class="drawer-foot">
         <div class="total-row">
-          <span>Total</span><span id="cart-total">$0.00</span>
+          <span>Total</span>
+          <span id="cart-total">$0.00</span>
         </div>
         <button id="checkout-btn" onclick="checkout()">CHECKOUT</button>
       </div>
     </div>
+
     <div id="toast"></div>
     <script src="script.js"></script>
   </body>
